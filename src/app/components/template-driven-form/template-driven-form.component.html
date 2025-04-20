@@ -1,0 +1,31 @@
+<!-- template-driven-form.component.html -->
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate>
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-control" name="username" 
+             [(ngModel)]="user.username" required>
+    </div>
+  
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" name="email"
+             [(ngModel)]="user.email" required email>
+    </div>
+  
+    <div class="mb-3">
+      <label class="form-label">Subscription</label>
+      <select class="form-select" name="subscription" [(ngModel)]="user.subscription">
+        <option *ngFor="let sub of subscriptions" [value]="sub">{{ sub | titlecase }}</option>
+      </select>
+    </div>
+  
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" name="newsletter"
+             [(ngModel)]="user.newsletter">
+      <label class="form-check-label">Subscribe to newsletter</label>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">
+      Submit
+    </button>
+  </form>
